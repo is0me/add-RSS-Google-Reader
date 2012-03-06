@@ -1,0 +1,19 @@
+<!--
+Global HTML Page to control the extension logic.
+-->
+<!DOCTYPE HTML>
+
+<script>
+// Set up the Listener
+safari.application.addEventListener("command", performCommand, false);
+
+// Function to perform when event is received
+function performCommand(event) {
+	// Make sure event comes from the button
+    if (event.command == "add-rss") {
+		var currentURL = event.target.browserWindow.activeTab.url;
+		var newTab = safari.application.activeBrowserWindow.openTab(); // Open a new tab
+		newTab.url = "http://www.google.com/reader/view/#stream/feed%2F"+escape(currentURL); // Set tab URL to nettuts
+    }
+}
+</script>
